@@ -1,12 +1,9 @@
 const path = require('path')
 
-
-/** controller get home page */
-class RePassPage {
+class RePass_Controller {
     show(req, res) {
-        return res.sendFile(path.join(__dirname, '../../view/recover-password.html'))
+        return res.render('repass.ejs')
     }
 }
-//
-module.exports = new RePassPage()
 
+module.exports = new RePass_Controller()

@@ -1,10 +1,10 @@
 {
-  "name": "2fa-tutorial",
+  "name": "kripto-3d-website",
   "version": "1.0.0",
   "description": "",
-  "main": "bwd.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon bwd.js"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",

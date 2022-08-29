@@ -1,12 +1,12 @@
 const path = require('path')
 
 /** controller get home page */
-class newsPage {
-    show(req, res) {
-        return res.sendFile(path.join(__dirname,  '../../view/news.html'))
+class NewsController {
+    get(req, res) {
+        return res.render('news.ejs')
     }
 }
-//
-module.exports = new newsPage()
+
+module.exports = new NewsController()
 
 

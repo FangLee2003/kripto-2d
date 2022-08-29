@@ -54,12 +54,10 @@ function verifyLogin(email, password, code, req, res, failUrl, err) {
 
 
 /** controller get home page */
-class LoginPage {
-
+class LoginController {
     get(req, res) {
         // return res.sendFile(path.join(__dirname, '../../view/login.html'))
         res.render('login.ejs')
-
     }
 
     post(req, res, next, err) {
@@ -80,12 +78,10 @@ class LoginPage {
         else{
             res.status(500).json({err: 'loi server'})
         }
-
-
     }
 }
 
-module.exports = new LoginPage()
+module.exports = new LoginController()
 
 // exports = {verifyLogin}
 

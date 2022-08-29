@@ -17,13 +17,13 @@ session({
 })
 
 class RegisterController {
-    showRe(req, res) {
+    get(req, res) {
         res.render('register.ejs')
 
         // return res.sendFile(path.join(__dirname, '../../view/register.html'))
     }
 
-    postRe(req, res) {
+    post(req, res) {
         const email = req.body.email;
         const password = req.body.password;
         const secret = authenticator.generateSecret();
@@ -45,10 +45,8 @@ class RegisterController {
                     } else {
                         req.session.qr = url
                         req.session.email = email
-                        res.redirect('/signup-2fa')
+                        res.redirect('/register-tfa')
                     }
-
-
                 })
             })
             .catch(err=> {
@@ -59,11 +57,9 @@ class RegisterController {
 
     get2fa(req, res) {
         if (!req.session.qr) {
-            return res.redirect('/loio')
-
+            return res.redirect('/error_page')
         }
-
-        return res.render('signup__2fa.ejs', {qr: req.session.qr})
+        return res.render('tfa.ejs', {qr: req.session.qr})
     }
 }
 

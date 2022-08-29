@@ -52,12 +52,14 @@
 
 <div id="fb-root"></div>
 
+<div id="loading">
+    <img id="loading-image" src="/src/public/images/loading.gif" alt="Loading..."/>
+</div>
 
-<%- include ('header.ejs')%>
-
+<%- include ('partials/navbar') %>
 
 <!-- Main Content -->
-<form action="/sign--up" method="post">
+<form action="/register" method="post">
 <div class="col-1-3">
     <div class="frame form fadeInUp" style="padding: 1rem 3rem;">
         <table>

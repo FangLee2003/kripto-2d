@@ -1,4 +1,4 @@
-const path =require("path")
+const path = require("path")
 const QRCode = require("qrcode");
 const {authenticator} = require("otplib");
 // const RegisterController = require('./RegisterController')
@@ -8,15 +8,16 @@ const {authenticator} = require("otplib");
 //     secret: 'supersecret',
 // })
 
-class SignUp2faController {
+class TFAController {
     // GET
     show(req, res) {
         if (!req.session.qr) {
-            return res.redirect('/')
+            return res.redirect('/error_page')
         }
-        return res.render('signup__2fa.ejs', {qr: req.session.qr})
+        return res.render('tfa.ejs', {qr: req.session.qr})
         // return res.json('ok')
     }
 }
-    module.exports = new SignUp2faController();
+
+module.exports = new TFAController();
 
