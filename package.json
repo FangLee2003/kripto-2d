@@ -49,5 +49,13 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FangLee2003/kripto-3d-website-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FangLee2003/kripto-3d-website-backend/issues"
+  },
+  "homepage": "https://github.com/FangLee2003/kripto-3d-website-backend#readme"
 }
