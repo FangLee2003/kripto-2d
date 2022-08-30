@@ -24,7 +24,7 @@ export function noWebGL() {
   var linkText = document.createTextNode("Click here to visit my static site");
   a.appendChild(linkText);
   a.title = "Static Site";
-  a.href = "https://ryanfloyd.io";
+  a.href = "https://kripto-3d-website.herokuapp.com";
   a.style.margin = "0px auto";
   a.style.textAlign = "center";
   document.getElementById("WEBGLcontainer").appendChild(warning);

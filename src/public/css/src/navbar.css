@@ -1,8 +1,7 @@
 .nav-bar {
     display: flex;
     flex-flow: nowrap;
-    position: fixed;
-    z-index: 2;
+    z-index: 5;
     top: 0;
     left: 0;
     width: 100%;
@@ -12,7 +11,7 @@
 
 .nav-bar-left {
     width: 40%;
-    margin: 0px 1%;
+    margin-left: 1%;
 }
 
 .nav-bar-left input {
@@ -27,6 +26,7 @@
 .nav-bar-right {
     width: 60%;
     display: block;
+    margin-right: 1%;
     list-style: none;
 }
 
@@ -60,6 +60,10 @@
 .nav-bar-right li.active a {
     color: #f7614e;
     border-bottom: 1px solid #f7614e;
+}
+
+.nav-mobile {
+    z-index: 5;
 }
 
 .nav-mobile-content {
@@ -109,7 +113,7 @@
     transform: translateX(0);
 }
 
-@media screen and (max-width: 80em) {
+@media screen and (max-width: 60em) {
     .nav-bar-right {
         display: none;
     }

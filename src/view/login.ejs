@@ -10,26 +10,29 @@
     <link rel="icon" href="/src/public/images/logo-color.png">
 
     <link rel='stylesheet' href="/src/public/css/index.css" type="text/css">
-    <link rel='stylesheet' href="/bootstrap/css/bootstrap.min.css" type="text/css">
 
     <meta property="og:image" content="images/preview/preview-login.png"/>
     <meta property="og:title" content="Kripto Login"/>
     <meta property="og:description" content="Trading Future"/>
-    <meta property="og:url" content="https://fanglee2003.github.io/login"/>
+    <meta property="og:url" content="https://kripto-website.herokuapp.com/login"/>
 </head>
 <style>
     body {
-        background-image: url('/src/public/images/background.jpg');
+        background-image: url('src/public/images/background.jpg');
         background-size: cover;
     }
 
     .col-1-3 {
-        margin: 5rem auto;
+        margin: 1rem auto;
     }
 
-    @media screen and (max-width: 80em) {
+    .col-3-3 {
+        margin: 0 auto 2rem;
+    }
+
+    @media screen and (max-width: 60em) {
         body {
-            background-image: url('/src/public/images/background2.jpg');
+            background-image: url('src/public/images/background2.jpg');
         }
     }
 </style>
@@ -45,10 +48,10 @@
 
 <!-- Main Content -->
 <div class="col-1-3">
-    <form class="frame form fadeInUp">
+    <form class="frame form fadeInUp" action="/login" method="post">
         <div class="col-3-3">
             <div class="logo">
-                <img src="images/logo-color.png" alt="logo-image">
+                <img src="src/public/images/logo-color.png" alt="logo-image">
                 <h1>Login</h1>
             </div>
         </div>
@@ -66,20 +69,26 @@
                  data-layout="default" data-auto-logout-link="false" data-use-continue-as="true"></div>
         </div>
         <div class="col-3-3">
-            <p class="float-left"><a href="register.html">Register</a></p>
-            <p class="float-right"><a href="recover-password.html">Recover Password</a></p>
+            <p class="float-left"><a href="/register">Register</a></p>
+            <p class="float-right"><a href="/repass">Recover Password</a></p>
         </div>
     </form>
 </div>
 
 <script src="bootstrap/js/bootstrap.bundle.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
-<script src="js/jquery.js"></script>
+
+<script src="/src/public/js/jquery.js"></script>
+<script src="/src/public/js/popper.min.js"></script>
 
 <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0&appId=966413697364774&autoLogAppEvents=1"
         nonce="e3FHeFDB">
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.min.js"
+        integrity="sha256-Pqs5A9wApIiYSB4hUcVldLk59gXaGnttbDmxVjRm6zQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script src="src/public/js/loading.js"></script>
 

@@ -3,7 +3,7 @@ const session = require('express-session')
 const {authenticator} = require('otplib')
 const QRCode = require('qrcode')
 const bodyParser = require('body-parser')
-const User = require("../../app/models/User");
+const User = require("../models/User");
 const {mod} = require("qrcode/lib/core/polynomial");
 const path = require("path");
 const app = express()
@@ -45,7 +45,7 @@ class RegisterController {
                     } else {
                         req.session.qr = url
                         req.session.email = email
-                        res.redirect('/register-tfa')
+                        res.redirect('/tfa')
                     }
                 })
             })
@@ -55,7 +55,7 @@ class RegisterController {
 
     }
 
-    get2fa(req, res) {
+    gettfa(req, res) {
         if (!req.session.qr) {
             return res.redirect('/error_page')
         }

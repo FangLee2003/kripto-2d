@@ -6,6 +6,7 @@
     font-size: 20px;
     padding: 10px;
     border: none;
+    border-radius: 0.25rem;
 }
 
 .button-green:hover, .button-red:hover, .button-purple:hover {

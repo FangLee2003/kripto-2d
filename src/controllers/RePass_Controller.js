@@ -1,7 +1,7 @@
 const path = require('path')
 
 class RePass_Controller {
-    show(req, res) {
+    get(req, res) {
         return res.render('repass.ejs')
     }
 }
