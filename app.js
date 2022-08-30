@@ -58,5 +58,5 @@ app.use(
 route(app);
 
 app.listen(port, () => {
-    console.log(`Example app listening on http://localhost:${port}`);
+    console.log(`Kripto 3D Website listening on http://localhost:${port}`);
 });
