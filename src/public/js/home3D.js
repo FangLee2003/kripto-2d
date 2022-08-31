@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import {WEBGL} from 'src/public/js/WebGL';
-import * as Ammo from 'src/resources/ammo';
+import {WEBGL} from './WebGL';
+import * as Ammo from '../../resources/ammo/ammo';
 import {
     boardTextures,
     boxTexture,
@@ -8,7 +8,7 @@ import {
     URL,
     stoneTexture,
     woodTexture,
-} from 'src/public/js/textures';
+} from './textures';
 
 import {
     setupEventHandlers,
@@ -16,7 +16,7 @@ import {
     isTouchscreenDevice,
     touchEvent,
     createJoystick,
-} from 'src/public/js/eventHandlers';
+} from './eventHandlers';
 
 import {
     preloadDivs,
@@ -26,7 +26,7 @@ import {
     startButton,
     noWebGL,
     fadeOutDivs,
-} from 'src/public/js/preload';
+} from './preload';
 
 import {
     clock,
@@ -48,14 +48,14 @@ import {
     galaxyMaterial,
     galaxyClock,
     galaxyPoints,
-} from 'src/public/js/world';
+} from './world';
 
 import {
     simpleText,
     floatingLabel,
     allLanguages,
     createTextOnPlane,
-} from 'src/public/js/surfaces';
+} from './surfaces';
 
 import {
     pickPosition,
@@ -63,7 +63,7 @@ import {
     getCanvasRelativePosition,
     rotateCamera,
     launchHover,
-} from 'src/public/js/utils';
+} from './utils';
 
 export let cursorHoverObjects = [];
 
