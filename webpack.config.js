@@ -9,6 +9,9 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: 'app.bundle.js',
     },
+    externals: {
+        express: 'express',
+    },
     module: {
         rules: [
             {
@@ -38,5 +41,5 @@ module.exports = {
     },
     node: {
         fs: 'empty',
-    },
+    }
 };

@@ -9,7 +9,6 @@ const session = require('express-session')
 
 // const cookieParser = require('cookie-parser');
 
-//
 // app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
@@ -20,24 +19,17 @@ app.use(express.static(path.join(__dirname, '/')));
 
 const { engine } = require('express-handlebars');
 
-
-
 app.use(session({
     secret: 'supersecret',
     resave: true,
     saveUninitialized: true
 }))
 
-
-
 // HTTP logger
 app.use(morgan('combined'));
 
-
 // Template Engine
-
 app.set('view engine', 'ejs')
-
 
 app.set('views', path.join(__dirname, 'src/view'));
 
