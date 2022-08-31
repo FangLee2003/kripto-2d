@@ -1,8 +1,8 @@
 // use Three.js to set up graphics
 import * as THREE from 'three';
 import Stats from 'stats.js';
-import galaxyVertexShader from '../public/images/home/vertex.glsl';
-import galaxyFragmentShader from '../public/images/home/fragment.glsl';
+import galaxyVertexShader from '../images/home/vertex.glsl';
+import galaxyFragmentShader from '../images/home/fragment.glsl';
 
 //threejs variable declaration
 export let clock,

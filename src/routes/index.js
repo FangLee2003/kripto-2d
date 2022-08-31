@@ -29,7 +29,6 @@ function route(app) {
     router.get('/repass', RePass_Controller.get)
 
     return app.use('/', router)
-
 }
 
 module.exports = route;
