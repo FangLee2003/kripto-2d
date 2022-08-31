@@ -5,7 +5,8 @@ const morgan = require('morgan');
 const path = require('path');
 const route = require('./src/routes');
 const bodyParser = require('body-parser');
-const session = require('express-session')
+const session = require('express-session');
+const { engine } = require('express-handlebars');
 
 // const cookieParser = require('cookie-parser');
 
@@ -16,8 +17,6 @@ app.use(express.static(path.join(__dirname, '/')));
 //
 // app.set('views', path.join(__dirname, 'views'));
 // // console.log(path.join(__dirname, 'src\\views'))
-
-const { engine } = require('express-handlebars');
 
 app.use(session({
     secret: 'supersecret',
@@ -43,9 +42,6 @@ app.use(
     }),
 );
 
-// app.get('/hi', (req, res) => {
-//     res.render('signup-2fa');
-// });
 //Route init
 route(app);
 
