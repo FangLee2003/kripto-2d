@@ -1,3 +1,5 @@
+import {WEBGL} from 'src/resources/WebGL';
+
 export let preloadDivs = document.getElementsByClassName("preload");
 export let preloadOpacity = document.getElementsByClassName("preload-overlay");
 export let postloadDivs = document.getElementsByClassName("postload");

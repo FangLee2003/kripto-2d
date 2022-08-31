@@ -42,7 +42,7 @@ URL.login = '/login'
 URL.gitHub = 'https://github.com/FangLee2003';
 URL.linkedin = 'https://www.linkedin.com/in/fang-lee/';
 URL.youtube = 'https://www.youtube.com/channel/UCE2DVy3_Pk3BdVUAs6U-3cg';
-URL.blog = 'http://fanglee2003.blogspot.com/'
+URL.blog = 'https://fanglee2003.blogspot.com/'
 
 export {
     boardTextures,
