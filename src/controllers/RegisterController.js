@@ -2,6 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const {authenticator} = require('otplib')
 const QRCode = require('qrcode')
+const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const User = require("../models/User");
 const {mod} = require("qrcode/lib/core/polynomial");
@@ -18,48 +19,34 @@ session({
 
 class RegisterController {
     get(req, res) {
-        res.render('register.ejs')
+        res.render('register.ejs', {error: " "})
 
         // return res.sendFile(path.join(__dirname, '../../view/register.html'))
     }
 
-    post(req, res) {
-        const email = req.body.email;
-        const password = req.body.password;
-        const secret = authenticator.generateSecret();
+    async post(req, res) {
+        try {
+            const email = req.body.email, password = req.body.password
 
-        const user = new User(
-            {
-                email: email,
-                password: password,
-                secret: secret
-            });
+            const validUser = await User.findOne({email}).lean();
 
-        user
-            .save()
-            .then(() => {
-                // res.json('Successful Registration')
-                QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
-                    if (err) {
-                        throw err
-                    } else {
-                        req.session.qr = url
-                        req.session.email = email
-                        res.redirect('/tfa')
-                    }
-                })
-            })
-            .catch(err=> {
-                return res.json(err)
-            });
+            if (validUser) {
+                return res.render("register.ejs", {error: "User already exists!"})
+            } else {
+                const salt = await bcrypt.genSalt(10)
+                const hashed = await bcrypt.hash(password, salt)
 
-    }
+                const user = new User({
+                    email: email,
+                    password: hashed,
+                    secret: authenticator.generateSecret()
+                });
 
-    gettfa(req, res) {
-        if (!req.session.qr) {
-            return res.redirect('/error_page')
+                return res.redirect('/login', {error: " "});
+            }
+        } catch (err) {
+            res.send(err)
         }
-        return res.render('tfa.ejs', {qr: req.session.qr})
     }
 }
 

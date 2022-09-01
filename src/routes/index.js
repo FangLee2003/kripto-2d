@@ -4,7 +4,8 @@ const NewsController = require('../controllers/NewsController')
 const AccountController = require('../controllers/AccountController')
 const RegisterController = require('../controllers/RegisterController')
 const LoginController = require('../controllers/LoginController')
-const RePass_Controller = require('../controllers/RePass_Controller')
+const TFAController = require('../controllers/TFAController')
+const RePass_Controller = require('../controllers/RepassController')
 
 const {urlencoded} = require('body-parser');
 const express = require("express");
@@ -23,8 +24,8 @@ function route(app) {
     router.get('/login', LoginController.get)
     router.post('/login', LoginController.post)
 
-    router.get('/tfa', RegisterController.gettfa)
-    // router.post('/tfa', RegisterController.posttfa)
+    router.get('/tfa', TFAController.get)
+    // router.post('/tfa', TFAController.post)
 
     router.get('/repass', RePass_Controller.get)
 

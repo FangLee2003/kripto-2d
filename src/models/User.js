@@ -4,7 +4,7 @@ const User = new Schema({
     email: {type: String, required: true, maxlength: 255,},
     password: {type: String, required: true, maxlength: 255},
     secret: {type: String, required: true},
-
+    admin:{type: Boolean, default:false}
 }, {
     timestamps: true,
     // collection: 'users',

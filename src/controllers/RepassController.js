@@ -1,9 +1,9 @@
 const path = require('path')
 
-class RePass_Controller {
+class RepassController {
     get(req, res) {
         return res.render('repass.ejs')
     }
 }
 
-module.exports = new RePass_Controller()
+module.exports = new RepassController()

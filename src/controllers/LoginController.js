@@ -2,10 +2,9 @@ const path = require('path')
 const {authenticator} = require("otplib");
 const jwt = require("jsonwebtoken");
 const express = require('express')
-const User = require('../models/User')
-
-
+const bcrypt = require('bcrypt')
 const app = express()
+const User = require('../models/User')
 
 // const sessionMiddleware = require('../../middleware/mdw')
 // const jwtMiddleware = require('../../middleware/mdw')
@@ -13,7 +12,6 @@ const app = express()
 const session = require("express-session");
 const expressJWT = require("express-jwt");
 const QRCode = require("qrcode");
-
 
 const jwtMiddleware = expressJWT({
     secret: 'supersecret',
@@ -23,65 +21,54 @@ const jwtMiddleware = expressJWT({
     }
 })
 
-function verifyLogin(email, password, code, req, res, failUrl, err) {
-
-    //load user by email
-    email = req.body.email
-    User.find({email}, {"secret": 1, "password": 0, "email": 0, _id: 0},function (data, err){
-        if (err) {
-            throw err
-        }
-            if (!data) {
-                return res.redirect('/loi')
-            }
-
-            if (!authenticator.check(code, data.secret)) {
-                //redirect back
-                return res.redirect(failUrl)
-            }
-
-            //correct, add jwt to session
-            req.session.qr = null
-            req.session.email = null
-            req.session.token = jwt.sign(email, 'supersecret')
-
-            //redirect to "private" page
-            return res.redirect('/private')
-        })
-
-
-}
-
-
-/** controller get home page */
 class LoginController {
     get(req, res) {
         // return res.sendFile(path.join(__dirname, '../../view/login.html'))
-        res.render('login.ejs')
+        res.render('login.ejs', {error: " "})
     }
 
-    post(req, res, next, err) {
+    async post(req, res, next, err) {
+        try {
+            const email = req.body.email,
+                password = req.body.password,
+                code = req.body.code
 
-        const email = req.body.email,
-            password = req.body.password,
-            code = req.body.code
+            //load user by email
+            const validUser = await User.findOne({email}).lean();
+            if (!validUser) {
+                res.render('login.ejs', {error: "Wrong email or password!"})
+            }
+            const validPassword = await bcrypt.compare(req.body.password, validUser.password);
+            if (!validPassword) {
+                res.render('login.ejs', {error: "Wrong email or password!"})
+            }
+            if (validUser && validPassword) {
+                const secret = authenticator.generateSecret();
 
-        //load user by email
-        const userLogin = User.findOne({email}).lean();
-        const passLogin = User.findOne({password}).lean();
+                const user = new User(
+                    {
+                        email: email,
+                        password: password,
+                        secret: secret
+                    });
 
-        if (!userLogin || !passLogin) {
-            return res.status(200).json({
-              err:"loi"
-            })
-        }
-        else{
-            res.status(500).json({err: 'loi server'})
+                user.save().then(() => {
+                    // res.json('Successful Registration')
+                    QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
+                        if (err) {
+                            throw err
+                        } else {
+                            req.session.qr = url
+                            req.session.email = email
+                            res.redirect('/tfa')
+                        }
+                    })
+                })
+            }
+        } catch (err) {
+            res.send(err)
         }
     }
 }
 
 module.exports = new LoginController()
-
-// exports = {verifyLogin}
-

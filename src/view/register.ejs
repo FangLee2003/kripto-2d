@@ -63,9 +63,11 @@
         <div class="col-3-3">
             <input type="password" placeholder="Password" name="amount">
         </div>
-        <div class="col-3-3">
-            <input type="password" placeholder="Confirm Password" name="swift">
-        </div>
+        <% if (error !== " "){ %>
+            <div class="col-3-3" style="height: 1rem">
+                <label class="red-text"><%= error %></label>
+            </div>
+        <% } %>
         <div class="col-3-3">
             <button class="button-purple">Register</button>
         </div>

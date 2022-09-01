@@ -10,12 +10,11 @@ const {authenticator} = require("otplib");
 
 class TFAController {
     // GET
-    show(req, res) {
+    get(req, res) {
         if (!req.session.qr) {
-            return res.redirect('/error_page')
+            return res.redirect('/login', {error: " "})
         }
         return res.render('tfa.ejs', {qr: req.session.qr})
-        // return res.json('ok')
     }
 }
 
