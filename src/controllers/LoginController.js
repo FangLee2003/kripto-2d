@@ -36,33 +36,24 @@ class LoginController {
             //load user by email
             const validUser = await User.findOne({email}).lean();
             if (!validUser) {
-                res.render('login.ejs', {error: "Wrong email or password!"})
+                return res.render('login.ejs', {error: "Wrong email or password!"})
             }
-            const validPassword = await bcrypt.compare(req.body.password, validUser.password);
+            const validPassword = await bcrypt.compare(req.body.password, validUser.password)
             if (!validPassword) {
-                res.render('login.ejs', {error: "Wrong email or password!"})
+                return res.render('login.ejs', {error: "Wrong email or password!"})
             }
             if (validUser && validPassword) {
                 const secret = authenticator.generateSecret();
 
-                const user = new User(
-                    {
-                        email: email,
-                        password: password,
-                        secret: secret
-                    });
-
-                user.save().then(() => {
-                    // res.json('Successful Registration')
-                    QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
-                        if (err) {
-                            throw err
-                        } else {
-                            req.session.qr = url
-                            req.session.email = email
-                            res.redirect('/tfa')
-                        }
-                    })
+                // res.json('Successful Registration')
+                QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
+                    if (err) {
+                        throw err
+                    } else {
+                        req.session.qr = url
+                        req.session.email = email
+                        res.redirect('/tfa')
+                    }
                 })
             }
         } catch (err) {

@@ -9,7 +9,6 @@ const {mod} = require("qrcode/lib/core/polynomial");
 const path = require("path");
 const app = express()
 
-
 session({
     secret: 'supersecret',
     resave: true,
@@ -42,7 +41,9 @@ class RegisterController {
                     secret: authenticator.generateSecret()
                 });
 
-                return res.redirect('/login', {error: " "});
+                await user.save()
+
+                return res.redirect('/login');
             }
         } catch (err) {
             res.send(err)

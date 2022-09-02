@@ -12,7 +12,7 @@ class TFAController {
     // GET
     get(req, res) {
         if (!req.session.qr) {
-            return res.redirect('/login', {error: " "})
+            return res.redirect('/login')
         }
         return res.render('tfa.ejs', {qr: req.session.qr})
     }
