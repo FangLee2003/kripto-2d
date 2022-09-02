@@ -31,20 +31,30 @@ class RegisterController {
 
             if (validUser) {
                 return res.render("register.ejs", {error: "User already exists!"})
-            } else {
-                const salt = await bcrypt.genSalt(10)
-                const hashed = await bcrypt.hash(password, salt)
-
-                const user = new User({
-                    email: email,
-                    password: hashed,
-                    secret: authenticator.generateSecret()
-                });
-
-                await user.save()
-
-                return res.redirect('/login');
             }
+            const salt = await bcrypt.genSalt(10)
+            const hashed = await bcrypt.hash(password, salt)
+
+            const user = await new User({
+                email: email,
+                password: hashed,
+                secret: authenticator.generateSecret()
+            });
+            user.save().then(() => {
+                // res.json('Successful Registration')
+                QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
+                    if (err) {
+                        throw err
+                    } else if (req.session.email === !email) {
+                        return res.render('login.ejs', {error: " "})
+                    } else {
+                        req.session.qr = url
+                        req.session.email = email
+                        res.redirect('/tfa')
+                    }
+                })
+                return res.redirect('/login');
+            })
         } catch (err) {
             res.send(err)
         }

@@ -25,9 +25,10 @@ function route(app) {
     router.post('/login', LoginController.post)
 
     router.get('/tfa', TFAController.get)
-    // router.post('/tfa', TFAController.post)
+    router.post('/tfa', TFAController.post)
 
     router.get('/repass', RePass_Controller.get)
+    router.post('/repass', RePass_Controller.post)
 
     return app.use('/', router)
 }

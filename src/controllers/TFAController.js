@@ -1,12 +1,8 @@
 const path = require("path")
 const QRCode = require("qrcode");
 const {authenticator} = require("otplib");
-// const RegisterController = require('./RegisterController')
-// const session = require("express-session");
-
-// const sessionMiddleware = session({
-//     secret: 'supersecret',
-// })
+const session = require("express-session");
+const User = require('../models/User')
 
 class TFAController {
     // GET
@@ -15,6 +11,28 @@ class TFAController {
             return res.redirect('/login')
         }
         return res.render('tfa.ejs', {qr: req.session.qr})
+    }
+
+    post(req, res) {
+        const email = req.session.email,
+            code = req.body.code
+
+        User.find({email}, {"secret": 1, "password": 0, "email": 0, _id: 0}, function (data, err) {
+            if (err) {
+                throw err
+            }
+            if (!data || !authenticator.check(code, data.secret)) {
+                //redirect back
+                return res.render("login.ejs", {error: "Authentication error!"})
+            }
+
+            //correct, add jwt to session
+            req.session.qr = null
+            req.session.email = null
+            req.session.token = jwt.sign(email, 'supersecret')
+
+            return res.redirect('/account')
+        })
     }
 }
 

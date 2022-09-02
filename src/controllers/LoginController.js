@@ -30,8 +30,7 @@ class LoginController {
     async post(req, res, next, err) {
         try {
             const email = req.body.email,
-                password = req.body.password,
-                code = req.body.code
+                password = req.body.password
 
             //load user by email
             const validUser = await User.findOne({email}).lean();
@@ -43,18 +42,8 @@ class LoginController {
                 return res.render('login.ejs', {error: "Wrong email or password!"})
             }
             if (validUser && validPassword) {
-                const secret = authenticator.generateSecret();
-
-                // res.json('Successful Registration')
-                QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
-                    if (err) {
-                        throw err
-                    } else {
-                        req.session.qr = url
-                        req.session.email = email
-                        res.redirect('/tfa')
-                    }
-                })
+                req.session.email = email
+                res.redirect('/tfa')
             }
         } catch (err) {
             res.send(err)
