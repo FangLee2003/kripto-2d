@@ -15,13 +15,13 @@ class TFAController {
 
     post(req, res) {
         const email = req.session.email,
-            code = req.body.code
+            password = req.session.password
 
         User.find({email}, {"secret": 1, "password": 0, "email": 0, _id: 0}, function (data, err) {
             if (err) {
                 throw err
             }
-            if (!data || !authenticator.check(code, data.secret)) {
+            if (!data || !authenticator.check(password, data.secret)) {
                 //redirect back
                 return res.render("login.ejs", {error: "Authentication error!"})
             }

@@ -25,38 +25,39 @@ class RegisterController {
 
     async post(req, res) {
         try {
-            const email = req.body.email, password = req.body.password
+            const email = req.body.email, password = req.body.password, secret = authenticator.generateSecret()
 
-            const validUser = await User.findOne({email}).lean();
+            let validUser = User.findOne({email}).lean();
 
             if (validUser) {
-                return res.render("register.ejs", {error: "User already exists!"})
+                req.session.email = null
+                return res.redirect("/register")
             }
-            const salt = await bcrypt.genSalt(10)
-            const hashed = await bcrypt.hash(password, salt)
+
+            const hashed = await bcrypt.hash(password, 10)
 
             const user = await new User({
                 email: email,
                 password: hashed,
-                secret: authenticator.generateSecret()
+                secret: secret
             });
             user.save().then(() => {
                 // res.json('Successful Registration')
                 QRCode.toDataURL(authenticator.keyuri(email, 'KriptoExchange', secret), (err, url) => {
                     if (err) {
-                        throw err
+                        console.log(err)
                     } else if (req.session.email === !email) {
                         return res.render('login.ejs', {error: " "})
                     } else {
                         req.session.qr = url
                         req.session.email = email
+                        req.session.password = password
                         res.redirect('/tfa')
                     }
                 })
-                return res.redirect('/login');
             })
         } catch (err) {
-            res.send(err)
+            console.log(err)
         }
     }
 }

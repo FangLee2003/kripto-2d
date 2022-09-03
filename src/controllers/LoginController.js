@@ -27,26 +27,28 @@ class LoginController {
         res.render('login.ejs', {error: " "})
     }
 
-    async post(req, res, next, err) {
+    async post(req, res) {
         try {
             const email = req.body.email,
                 password = req.body.password
 
             //load user by email
-            const validUser = await User.findOne({email}).lean();
+            const validUser = User.findOne({email}).lean();
             if (!validUser) {
                 return res.render('login.ejs', {error: "Wrong email or password!"})
             }
-            const validPassword = await bcrypt.compare(req.body.password, validUser.password)
+            const validPassword = await bcrypt.compare(password, validUser.password)
+            console.log("Error here!")
             if (!validPassword) {
                 return res.render('login.ejs', {error: "Wrong email or password!"})
             }
             if (validUser && validPassword) {
                 req.session.email = email
+                req.session.password = password
                 res.redirect('/tfa')
             }
         } catch (err) {
-            res.send(err)
+            console.log(err)
         }
     }
 }
