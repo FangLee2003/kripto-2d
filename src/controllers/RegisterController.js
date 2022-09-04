@@ -27,7 +27,7 @@ class RegisterController {
         try {
             const email = req.body.email, password = req.body.password, secret = authenticator.generateSecret()
 
-            let validUser = User.findOne({email}).lean();
+            let validUser = await User.findOne({email}).lean();
 
             if (validUser) {
                 req.session.email = null
@@ -51,7 +51,6 @@ class RegisterController {
                     } else {
                         req.session.qr = url
                         req.session.email = email
-                        req.session.password = password
                         res.redirect('/tfa')
                     }
                 })

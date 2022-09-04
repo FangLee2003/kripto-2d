@@ -5,6 +5,7 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const app = express()
 const User = require('../models/User')
+const verifyTFA = require('../middleware/verifyTFA')
 
 // const sessionMiddleware = require('../../middleware/mdw')
 // const jwtMiddleware = require('../../middleware/mdw')
@@ -30,22 +31,20 @@ class LoginController {
     async post(req, res) {
         try {
             const email = req.body.email,
-                password = req.body.password
+                password = req.body.password,
+                code = req.body.code
 
             //load user by email
-            const validUser = User.findOne({email}).lean();
+            const validUser = await User.findOne({email}).lean();
             if (!validUser) {
                 return res.render('login.ejs', {error: "Wrong email or password!"})
             }
             const validPassword = await bcrypt.compare(password, validUser.password)
-            console.log("Error here!")
             if (!validPassword) {
                 return res.render('login.ejs', {error: "Wrong email or password!"})
             }
             if (validUser && validPassword) {
-                req.session.email = email
-                req.session.password = password
-                res.redirect('/tfa')
+                verifyTFA.verify(req, res, email, code)
             }
         } catch (err) {
             console.log(err)
