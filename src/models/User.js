@@ -4,7 +4,10 @@ const User = new Schema({
     email: {type: String, required: true, maxlength: 255, unique: true},
     password: {type: String, required: true, maxlength: 255},
     secret: {type: String, required: true},
-    admin:{type: Boolean, default:false}
+    admin: {type: Boolean, default: false},
+    name: {type: String},
+    phone: {type: String},
+    country: {type: String}
 }, {
     timestamps: true,
     // collection: 'users',
