@@ -18,9 +18,10 @@ class AccountController {
             }
 
             return res.render('account.ejs', {
-                email: user.email,
                 name: user.name,
+                email: user.email,
                 phone: user.phone,
+                city: user.city,
                 country: user.country
             })
         } catch (err) {
@@ -39,6 +40,7 @@ class AccountController {
                     $set: {
                         name: req.body.name,
                         phone: req.body.phone,
+                        city: req.body.city,
                         country: req.body.country
                     }
                 }

@@ -11,7 +11,7 @@
 
     <link rel='stylesheet' href="/src/public/css/index.css" type="text/css">
 
-    <meta property="og:image" content="images/preview/preview-account-new.png"/>
+    <meta property="og:image" content="images/preview/preview-account.png"/>
     <meta property="og:title" content="Kripto Account"/>
     <meta property="og:description" content="Trading Future"/>
     <meta property="og:url" content="https://kripto-3d.herokuapp.com/account"/>
@@ -23,13 +23,20 @@
     }
 
     .col-1-3 {
-        margin: 1rem auto;
+        margin: 2rem auto;
     }
 
     td {
-        padding: 1rem;
+        padding: 1rem 3rem;
+        text-align: left;
     }
 
+    input[type="tel"]::placeholder {
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+        color: #302b63;
+    }
 
     @media screen and (max-width: 60em) {
         body {
@@ -48,28 +55,34 @@
 
 <!-- Main Content -->
 <div class="flex-container">
-    <div class="col-1-3">
+    <div class="col-2-3">
         <form action="/account" method="post">
-            <table class="frame form fadeInUp" style="color: #302b63">
+            <table class="frame form fadeInUp" style="color: #302b63; font-weight: 500">
                 <tr>
-                    <td colspan="2">
-                        <img src="src/public/images/user.png" alt="user"></td>
+                    <td colspan="2" style="text-align: center">
+                        <img src="src/public/images/user.png" alt="user">
+                        <input style="border: none" type="tel" placeholder="<%= name %>" name="name">
+                    </td>
                 </tr>
                 <tr>
-                    <td class="text-left">Username</td>
-                    <td class="text-right"><input type="text" placeholder="<%= name %>" name="name"></td>
+                    <td>
+                        Email
+                        <input type="text" placeholder="<%= email %>" name="email" readonly>
+                    </td>
+                    <td>
+                        Phone number
+                        <input type="text" placeholder="<%= phone %>" name="phone">
+                    </td>
                 </tr>
                 <tr>
-                    <td class="text-left">Email</td>
-                    <td class="text-right"><input type="text" placeholder="<%= email %>" name="email" readonly></td>
-                </tr>
-                <tr>
-                    <td class="text-left">Phone number</td>
-                    <td class="text-right"><input type="text" placeholder="<%= phone %>" name="phone"></td>
-                </tr>
-                <tr>
-                    <td class="text-left">Country</td>
-                    <td class="text-right"><input type="text" placeholder="<%= country %>" name="country"></td>
+                    <td>
+                        City
+                        <input type="text" placeholder="<%= city %>" name="city">
+                    </td>
+                    <td>
+                        Country
+                        <input type="text" placeholder="<%= country %>" name="country">
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -79,7 +92,6 @@
             </table>
         </form>
     </div>
-</div>
 </div>
 <script src="/bootstrap/js/bootstrap.bundle.js"></script>
 <script src="/bootstrap/js/bootstrap.js"></script>

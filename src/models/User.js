@@ -7,6 +7,7 @@ const User = new Schema({
     admin: {type: Boolean, default: false},
     name: {type: String},
     phone: {type: String},
+    city: {type: String},
     country: {type: String}
 }, {
     timestamps: true,
