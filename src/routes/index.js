@@ -16,7 +16,9 @@ function route(app) {
     router.get('/', HomeController.get)
     router.get('/marketcap', MarketcapController.get)
     router.get('/news', NewsController.get)
+
     router.get('/account', AccountController.get)
+    router.post('/account', AccountController.post)
 
     router.get('/register', RegisterController.get)
     router.post('/register', RegisterController.post)

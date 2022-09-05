@@ -1,10 +1,12 @@
 const path = require('path')
 const express = require('express')
 const app = express()
-const User = require('../models/User')
 const jwt = require("jsonwebtoken");
+const {MongoClient} = require("mongodb");
+const client = new MongoClient("mongodb+srv://fanglee:fanglee1808@fanglee.ofypspm.mongodb.net/?retryWrites=true&w=majority")
+const db = client.db('test')
+const User = require('../models/User')
 
-/** controller get home page */
 class AccountController {
     async get(req, res) {
         try {
@@ -24,6 +26,27 @@ class AccountController {
         } catch (err) {
             console.log(err)
             res.redirect('/login')
+        }
+    }
+
+    async post(req, res) {
+        try {
+            const token = await jwt.decode('supsersecret')
+            const user = await User.findOne({token}).lean();
+
+            await db.collection("users").updateOne({email: user.email},
+                {
+                    $set: {
+                        name: req.body.name,
+                        phone: req.body.phone,
+                        country: req.body.country
+                    }
+                }
+            )
+            return res.redirect("/account")
+        } catch (err) {
+            console.log(err)
+            res.redirect("/account")
         }
     }
 }
