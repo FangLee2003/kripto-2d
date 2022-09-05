@@ -14,7 +14,7 @@ async function verify(req, res, email, code) {
 
         //correct, add jwt to session
         req.session.qr = null
-        // req.session.email = null
+        req.session.email = null
         req.session.token = jwt.sign(email, 'supersecret')
 
         return res.redirect('/account')
