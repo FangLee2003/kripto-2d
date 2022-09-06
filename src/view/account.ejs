@@ -11,14 +11,14 @@
 
     <link rel='stylesheet' href="/src/public/css/index.css" type="text/css">
 
-    <meta property="og:image" content="images/preview/preview-account.png"/>
+    <meta property="og:image" content="/src/public/images/preview/preview-account.png"/>
     <meta property="og:title" content="Kripto Account"/>
     <meta property="og:description" content="Trading Future"/>
     <meta property="og:url" content="https://kripto-3d.herokuapp.com/account"/>
 </head>
 <style>
     body {
-        background-image: url('src/public/images/background.jpg');
+        background-image: image('/src/public/images/background.jpg');
         background-size: cover;
     }
 
@@ -40,7 +40,7 @@
 
     @media screen and (max-width: 60em) {
         body {
-            background-image: url('src/public/images/background2.jpg');
+            background-image: image('/src/public/images/background2.jpg');
         }
     }
 </style>
@@ -56,11 +56,11 @@
 <!-- Main Content -->
 <div class="flex-container">
     <div class="col-2-3">
-        <form action="/account" method="post">
+        <form action="/3d/account" method="post">
             <table class="frame form fadeInUp" style="color: #302b63; font-weight: 500">
                 <tr>
                     <td colspan="2" style="text-align: center">
-                        <img src="src/public/images/user.png" alt="user">
+                        <img src="/src/public/images/user.png" alt="user">
                         <input style="border: none" type="tel" placeholder="<%= name %>" name="name">
                     </td>
                 </tr>

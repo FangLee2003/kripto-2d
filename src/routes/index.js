@@ -1,3 +1,4 @@
+const HomeController = require('../controllers/HomeController')
 const MarketcapController = require('../controllers/MarketcapController')
 const NewsController = require('../controllers/NewsController')
 const AccountController = require('../controllers/AccountController')
@@ -12,7 +13,8 @@ const express = require("express");
 const router = express.Router()
 
 function route(app) {
-    router.get('/', MarketcapController.get)
+    router.get('/', HomeController.get)
+    router.get('/marketcap', MarketcapController.get)
     router.get('/news', NewsController.get)
 
     router.get('/account', AccountController.get)
@@ -30,7 +32,7 @@ function route(app) {
     router.get('/repass', RePass_Controller.get)
     router.post('/repass', RePass_Controller.post)
 
-    return app.use('/', router)
+    return app.use('/3d', router)
 }
 
 module.exports = route;
