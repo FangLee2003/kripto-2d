@@ -40,24 +40,16 @@
     "three": "^0.117.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/polyfill": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
     "async": "^3.2.4",
-    "babel-loader": "^8.0.5",
     "bcrypt": "^5.0.1",
-    "compression-webpack-plugin": "^4.0.0",
-    "nodemon": "^2.0.19",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "nodemon": "^2.0.19"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FangLee2003/kripto-3d-website-backend.git"
+    "url": "git+https://github.com/FangLee2003/kripto-2d.git"
   },
   "bugs": {
-    "url": "https://github.com/FangLee2003/kripto-3d-website-backend/issues"
+    "url": "https://github.com/FangLee2003/kripto-2d/issues"
   },
-  "homepage": "https://github.com/FangLee2003/kripto-3d-website-backend#readme"
+  "homepage": "https://github.com/FangLee2003/kripto-2d#readme"
 }
