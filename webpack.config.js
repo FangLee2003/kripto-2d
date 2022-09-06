@@ -35,7 +35,7 @@ module.exports = {
         contentBase: path.join(__dirname, ''),
         compress: true,
         watchContentBase: true,
-        port: 8580,
+        port: 8080,
         host: '0.0.0.0', //your ip address
         disableHostCheck: true, //coment these out for prod
     },
