@@ -1,11 +1,9 @@
 const path = require('path')
 
-
 /** controller get home page */
-class HomeController {
+class MarketcapController {
     get(req, res) {
         res.render('marketcap.ejs')
     }
 }
-module.exports = new HomeController()
-
+module.exports = new MarketcapController()

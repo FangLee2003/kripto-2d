@@ -1,4 +1,3 @@
-const HomeController = require('../controllers/HomeController')
 const MarketcapController = require('../controllers/MarketcapController')
 const NewsController = require('../controllers/NewsController')
 const AccountController = require('../controllers/AccountController')
@@ -13,8 +12,7 @@ const express = require("express");
 const router = express.Router()
 
 function route(app) {
-    router.get('/', HomeController.get)
-    router.get('/marketcap', MarketcapController.get)
+    router.get('/', MarketcapController.get)
     router.get('/news', NewsController.get)
 
     router.get('/account', AccountController.get)
