@@ -11,7 +11,7 @@
 
     <link rel='stylesheet' href="/src/public/css/index.css" type="text/css">
 
-    <meta property="og:image" content="images/preview/preview-repass.png"/>
+    <meta property="og:image" content="/src/public/images/preview/preview-repass.png"/>
     <meta property="og:title" content="Kripto Recover Password"/>
     <meta property="og:description" content="Trading Future"/>
     <meta property="og:url" content="https://kripto-3d.herokuapp.com/repass"/>
@@ -19,7 +19,7 @@
 
 <style>
     body {
-        background-image: url('src/public/images/background.jpg');
+        background-image: url('/src/public/images/background.jpg');
         background-size: cover;
     }
 
@@ -33,7 +33,7 @@
 
     @media screen and (max-width: 60em) {
         body {
-            background-image: url('src/public/images/background2.jpg');
+            background-image: url('/src/public/images/background2.jpg');
         }
     }
 </style>
@@ -47,7 +47,7 @@
 
 <!-- Main Content -->
 <div class="col-1-3">
-    <form class="frame form fadeInUp" action="/repass" method="post">
+    <form class="frame form fadeInUp" action="/3d/repass" method="post">
         <div class="col-3-3">
             <div class="logo">
                 <img src="/src/public/images/logo-color.png" alt="logo-image">
@@ -61,8 +61,8 @@
             <button type="submit" id="repass" class="button-purple">Send code</button>
         </div>
         <div class="col-3-3">
-            <p class="float-left"><a href="/register">Register</a></p>
-            <p class="float-right"><a href="/login">Login</a></p>
+            <p class="float-left"><a href="/3d/register">Register</a></p>
+            <p class="float-right"><a href="/3d/login">Login</a></p>
         </div>
     </form>
 </div>

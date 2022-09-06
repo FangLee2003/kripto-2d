@@ -9,7 +9,7 @@ async function verify(req, res, email, code) {
 
         if (!validUser || !authenticator.check(code, validUser.secret)) {
             //redirect back
-            return res.redirect("/login")
+            return res.redirect("/3d/login")
         }
 
         //correct, add jwt to session
@@ -17,10 +17,10 @@ async function verify(req, res, email, code) {
         req.session.email = null
         req.session.token = jwt.sign(email, 'supersecret')
 
-        return res.redirect('/account')
+        return res.redirect('/3d/account')
     } catch (err) {
         console.log(err)
-        res.redirect('/login')
+        res.redirect('/3d/login')
     }
 }
 
