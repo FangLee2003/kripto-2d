@@ -37,7 +37,8 @@
     "raw-loader": "^4.0.2",
     "sqlite3": "^5.0.2",
     "stats.js": "^0.17.0",
-    "three": "^0.117.1"
+    "three": "^0.117.1",
+    "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
     "async": "^3.2.4",
