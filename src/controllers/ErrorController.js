@@ -1,10 +1,10 @@
 const path = require('path')
 
 /** controller get home page */
-class HomeController {
+class ErrorController {
     get(req, res) {
-        res.render('home.ejs')
+        res.redirect('/3d')
     }
 }
 
-module.exports = new HomeController()
+module.exports = new ErrorController()

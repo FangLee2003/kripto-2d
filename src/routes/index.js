@@ -5,7 +5,8 @@ const AccountController = require('../controllers/AccountController')
 const RegisterController = require('../controllers/RegisterController')
 const LoginController = require('../controllers/LoginController')
 const TFAController = require('../controllers/TFAController')
-const RePass_Controller = require('../controllers/RepassController')
+const RepassController = require('../controllers/RepassController')
+const ErrorController = require('../controllers/ErrorController')
 
 const {urlencoded} = require('body-parser');
 const express = require("express");
@@ -13,7 +14,9 @@ const express = require("express");
 const router = express.Router()
 
 function route(app) {
+    app.get('/', ErrorController.get)
     router.get('/', HomeController.get)
+
     router.get('/marketcap', MarketcapController.get)
     router.get('/news', NewsController.get)
 
@@ -29,8 +32,8 @@ function route(app) {
     router.get('/tfa', TFAController.get)
     router.post('/tfa', TFAController.post)
 
-    router.get('/repass', RePass_Controller.get)
-    router.post('/repass', RePass_Controller.post)
+    router.get('/repass', RepassController.get)
+    router.post('/repass', RepassController.post)
 
     return app.use('/3d', router)
 }

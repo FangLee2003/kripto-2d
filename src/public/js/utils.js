@@ -1,7 +1,7 @@
 //start link events
 import * as THREE from 'three';
 import { camera, renderer, scene } from './world';
-import { cursorHoverObjects } from '../../home3D';
+import { cursorHoverObjects } from '../../index';
 
 export const pickPosition = { x: 0, y: 0 };
 
