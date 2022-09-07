@@ -1,0 +1,10 @@
+footer {
+    margin-top: 3rem;
+    padding: 1rem 0 0;
+    border-top: thin solid #ffffffe6;
+}
+
+p {
+    color: #fff;
+    text-align: center;
+}
