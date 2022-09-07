@@ -10,7 +10,7 @@
 }
 
 .nav-bar-left {
-    width: 40%;
+    width: 30%;
     margin-left: 1%;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .nav-bar-right {
-    width: 60%;
+    width: 70%;
     display: block;
     margin-right: 1%;
     list-style: none;
@@ -114,6 +114,10 @@
 }
 
 @media screen and (max-width: 60em) {
+    .nav-bar-left {
+        width: 50%;
+    }
+
     .nav-bar-right {
         display: none;
     }
