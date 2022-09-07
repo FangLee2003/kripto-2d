@@ -35,7 +35,9 @@ a, a:hover {
 .flex-container {
     display: flex;
     flex-flow: wrap;
+    position: relative;
     width: 100%;
+    min-height: 100vh;
     margin: 1rem 0 20px;
 }
 
