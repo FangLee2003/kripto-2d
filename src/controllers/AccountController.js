@@ -14,7 +14,7 @@ class AccountController {
             const user = await User.findOne({token}).lean();
 
             if (!user) {
-                return res.redirect('/3d/login')
+                return res.redirect('/login')
             }
 
             return res.render('account.ejs', {
@@ -26,7 +26,7 @@ class AccountController {
             })
         } catch (err) {
             console.log(err)
-            res.redirect('/3d/login')
+            res.redirect('/login')
         }
     }
 
@@ -45,10 +45,10 @@ class AccountController {
                     }
                 }
             )
-            return res.redirect("/3d/account")
+            return res.redirect("/account")
         } catch (err) {
             console.log(err)
-            res.redirect("/3d/account")
+            res.redirect("/account")
         }
     }
 }

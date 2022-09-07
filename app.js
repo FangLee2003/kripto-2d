@@ -30,7 +30,7 @@ app.use(morgan('combined'));
 // Template Engine
 app.set('view engine', 'ejs')
 
-app.set('views', path.join(__dirname, 'src/view'));
+app.set('views', path.join(__dirname, '/src/view'));
 
 // connect DB
 const db = require('./src/config/db/mongodb');

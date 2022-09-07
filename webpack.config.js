@@ -3,7 +3,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: ['@babel/polyfill', '/src/index.js'],
+        app: ['@babel/polyfill', '/src/public/js/home3D.js'],
     },
     output: {
         path: path.resolve(__dirname, 'build'),

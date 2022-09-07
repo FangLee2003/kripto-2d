@@ -31,7 +31,7 @@ class RegisterController {
 
             if (validUser) {
                 req.session.email = null
-                return res.redirect("/3d/register")
+                return res.redirect("/register")
             }
 
             const hashed = await bcrypt.hash(password, 10)
@@ -51,7 +51,7 @@ class RegisterController {
                     } else {
                         req.session.qr = url
                         req.session.email = email
-                        res.redirect('/3d/tfa')
+                        res.redirect('/tfa')
                     }
                 })
             })
